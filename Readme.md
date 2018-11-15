@@ -1,3 +1,8 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [XtraReport1.cs](./CS/ControlHighlighting/XtraReport1.cs) (VB: [XtraReport1.vb](./VB/ControlHighlighting/XtraReport1.vb))
+<!-- default file list end -->
 # How to highlight a control in Print Preview when it is being hovered by the mouse pointer
 
 
