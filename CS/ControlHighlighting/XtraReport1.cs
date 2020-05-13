@@ -1,15 +1,32 @@
 ﻿using System.Drawing;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraPrinting.Control;
+using DevExpress.XtraPrinting.Preview;
 using DevExpress.XtraReports.UI;
 // ...
 
 namespace ControlHighlighting {
     public partial class XtraReport1 : DevExpress.XtraReports.UI.XtraReport {
+        DocumentViewer printControl = null;
+
+        public DocumentViewer PrintControl {
+            get {
+                return printControl;
+            }
+            set {
+                if (printControl != null)
+                    PrintControl.BrickMouseMove -= PrintControl_BrickMouseMove;
+
+                printControl = value;
+
+                if (printControl != null)
+                    PrintControl.BrickMouseMove += PrintControl_BrickMouseMove;
+
+            }
+        }
+
         public XtraReport1() {
             InitializeComponent();
-            ReportPrintTool printTool = new ReportPrintTool(this);
-            ((PrintTool)this.ReportPrintTool).PreviewForm.PrintControl.BrickMouseMove += new BrickEventHandler(PrintControl_BrickMouseMove);
         }
 
         Brick brick;
@@ -18,8 +35,8 @@ namespace ControlHighlighting {
             this.brick = e.Brick;
             mouseMove = e.Brick != null;
 
-            ((PrintTool)this.ReportPrintTool).PreviewForm.PrintControl.Invalidate();
-            ((PrintTool)this.ReportPrintTool).PreviewForm.PrintControl.Refresh();
+            PrintControl?.Invalidate();
+            PrintControl?.Refresh();
         }
 
         bool mouseMove = false;

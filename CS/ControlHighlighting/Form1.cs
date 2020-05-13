@@ -10,7 +10,12 @@ namespace ControlHighlighting {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            new XtraReport1().ShowPreviewDialog();
+            XtraReport1 report = new XtraReport1();
+            using (ReportPrintTool tool = new ReportPrintTool(report)) {
+                report.PrintControl = tool.PreviewRibbonForm.PrintControl;
+                tool.ShowRibbonPreviewDialog();
+            }
+            
         }
     }
 }
