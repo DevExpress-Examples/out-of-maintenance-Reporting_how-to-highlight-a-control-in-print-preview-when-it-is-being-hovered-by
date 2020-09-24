@@ -47,7 +47,7 @@ Namespace ControlHighlighting
 		Private mouseMove As Boolean = False
 
 		Private Sub xrLabel1_Draw(ByVal sender As Object, ByVal e As DrawEventArgs) Handles xrLabel1.Draw
-			If mouseMove AndAlso e.Brick = brick Then
+			If mouseMove AndAlso e.Brick Is brick Then
 				e.Brick.BackColor = Color.Aqua
 			Else
 				e.Brick.BackColor = Color.Transparent
